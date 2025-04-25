@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- Copy this entire block from your index.html -->
+  <!-- COPY THE ENTIRE <style> BLOCK FROM index.html BELOW -->
   <style>
     /* ───────────────  CSS Variables  ─────────────── */
     :root{
@@ -59,18 +59,89 @@
       transition:width var(--transition-speed)
     }
     .nav-links a:hover::after{width:100%}
-
-    /* Burger (mobile) */
     .burger{display:none;cursor:pointer}
     .burger div{width:25px;height:3px;background:var(--text-color);margin:5px;transition:all var(--transition-speed)}
 
-    /* ───────────────  Sections, Cards, Footer, Responsive, Animations…  ─────────────── */
-    /* Copy everything from your index.html’s <style> block here */
-    /* … */
+    /* ───────────────  Projects Grid & Cards  ─────────────── */
+    #projects h2{
+      font-size:2.5rem;text-align:center;margin-bottom:50px;
+      opacity:0;animation:fadeInUp var(--animation-duration) forwards .5s
+    }
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+    .project-card{
+      background:var(--primary-bg);
+      border:2px solid var(--border-color);
+      border-radius:10px;
+      overflow:hidden;
+      padding-bottom:25px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      transition:transform var(--transition-speed),border-color var(--transition-speed);
+    }
+    .project-card:hover{
+      transform:translateY(-10px);
+      border-color:var(--hover-accent);
+    }
+    .project-card img{
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      transition:filter var(--transition-speed);
+    }
+    .project-card:hover img{filter:grayscale(0%)}
+    .project-card h3,
+    .project-card p{margin:0 20px;text-align:center}
+    .project-card h3{
+      font-size:1.5rem;margin-top:15px;opacity:0;
+      animation:fadeInUp var(--animation-duration) forwards 1s
+    }
+    .project-card p{
+      font-size:.9rem;margin-bottom:15px;color:var(--text-muted);
+      opacity:0;animation:fadeInUp var(--animation-duration) forwards 1.3s
+    }
+    .btn-secondary{
+      display:block;width:80%;max-width:200px;margin-top:auto;margin-bottom:15px;
+      padding:10px 0;background:var(--accent-color);color:var(--text-color);
+      border:none;border-radius:25px;cursor:pointer;font-size:.9rem;text-align:center;
+      transition:background var(--transition-speed);opacity:0;
+      animation:fadeInUp var(--animation-duration) forwards 1.6s
+    }
+    .btn-secondary:hover{background:var(--hover-accent)}
+
+    /* ───────────────  Footer  ─────────────── */
+    footer{
+      background:var(--primary-bg);
+      padding:20px 0;
+      text-align:center;
+      border-top:1px solid var(--border-color);
+    }
+    .social-links a{margin:0 15px;font-size:1.5rem;transition:color var(--transition-speed)}
+    .social-links a:hover{color:var(--accent-color)}
+
+    /* ───────────────  Responsive & Animations  ─────────────── */
+    @media (max-width:768px){
+      .nav-links{position:fixed;right:0;top:0;height:100vh;width:60%;background:rgba(0,0,0,.95);flex-direction:column;align-items:center;transform:translateX(100%);transition:transform .5s ease-in;padding-top:100px}
+      .nav-links.nav-active{transform:translateX(0)}
+      .nav-links li{margin:20px 0}
+      .burger{display:block}
+      .social-links a{font-size:1.3rem;margin:0 10px}
+    }
+    @keyframes fadeInUp{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .toggle .line1{transform:rotate(-45deg) translate(-5px,6px)}
+    .toggle .line2{opacity:0}
+    .toggle .line3{transform:rotate(45deg) translate(-5px,-6px)}
   </style>
 </head>
 <body>
-  <!-- HEADER with only Home & Contact -->
+  <!-- HEADER -->
   <header id="navbar" role="banner">
     <div class="container nav-container">
       <a href="https://h190k.com" class="logo" aria-label="Home">H190K</a>
@@ -86,7 +157,7 @@
     </div>
   </header>
 
-  <!-- MAIN: All Projects Grid -->
+  <!-- MAIN CONTENT -->
   <main style="padding-top:140px;">
     <section id="projects">
       <div class="container">
@@ -96,7 +167,7 @@
     </section>
   </main>
 
-  <!-- FOOTER (same as index.html) -->
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <p>&copy; 2025 H190K. All rights reserved.</p>
@@ -114,13 +185,10 @@
     </div>
   </footer>
 
-  <!-- Reuse your main.js for burger & animations -->
+  <!-- SCRIPTS -->
   <script src="main.js"></script>
-
-  <!-- MODULE: render all projects -->
   <script type="module">
     import projects from './projects.js';
-
     const grid = document.getElementById('projects-grid');
     projects.forEach(p => {
       grid.insertAdjacentHTML('beforeend', `
