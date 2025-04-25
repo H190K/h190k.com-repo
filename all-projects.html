@@ -1,38 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="All projects by H190K">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="All projects by H190K" />
   <title>All Projects | H190K</title>
 
-  <link rel="icon" href="icon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Favicon & Fonts & Icons -->
+  <link rel="icon" href="icon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- reuse the same CSS: either copy-paste the <style> block from index.html
-       or move it into style.css and <link rel="stylesheet" href="style.css"> -->
+  <!-- Copy this entire block from your index.html -->
   <style>
-    /* paste your entire CSS from index.html here (identical) */
+    /* ───────────────  CSS Variables  ─────────────── */
+    :root{
+      --primary-bg:#0a0a0a; --secondary-bg:#111;
+      --accent-color:#ff1493; --hover-accent:#ff6347;
+      --btn-primary-bg:#8a2be2; --btn-primary-hover:#4b0082;
+      --text-color:#fff; --text-muted:#ccc; --border-color:#333;
+      --transition-speed:.3s; --animation-duration:1s;
+    }
+
+    /* ───────────────  Base / Global  ─────────────── */
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Inter',sans-serif;
+      background:var(--primary-bg);
+      color:var(--text-color);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    .container{width:90%;max-width:1200px;margin:auto;padding:20px 0}
+
+    /* ───────────────  Navigation  ─────────────── */
+    header{
+      position:fixed;width:100%;padding:20px 0;
+      background:rgba(10,10,10,.9);
+      transition:background var(--transition-speed);
+      z-index:1000;
+    }
+    header.scrolled{
+      background:var(--primary-bg);
+      box-shadow:0 2px 10px rgba(0,0,0,.5);
+      backdrop-filter:blur(5px)
+    }
+    .nav-container{display:flex;justify-content:space-between;align-items:center}
+    .logo{font-size:1.8rem;font-weight:bold;cursor:pointer;transition:color var(--transition-speed)}
+    .logo:hover{color:var(--accent-color)}
+    .nav-links{list-style:none;display:flex}
+    .nav-links li{margin-left:30px;position:relative}
+    .nav-links a{font-size:1rem;transition:color var(--transition-speed)}
+    .nav-links a:hover{color:var(--hover-accent)}
+    .nav-links a::after{
+      content:'';display:block;position:absolute;left:0;bottom:-5px;
+      width:0;height:2px;background:var(--hover-accent);
+      transition:width var(--transition-speed)
+    }
+    .nav-links a:hover::after{width:100%}
+
+    /* Burger (mobile) */
+    .burger{display:none;cursor:pointer}
+    .burger div{width:25px;height:3px;background:var(--text-color);margin:5px;transition:all var(--transition-speed)}
+
+    /* ───────────────  Sections, Cards, Footer, Responsive, Animations…  ─────────────── */
+    /* Copy everything from your index.html’s <style> block here */
+    /* … */
   </style>
 </head>
 <body>
-  <!-- Header with quick links -->
+  <!-- HEADER with only Home & Contact -->
   <header id="navbar" role="banner">
     <div class="container nav-container">
-      <a href="index.html#hero" class="logo" aria-label="Home">H190K</a>
+      <a href="https://h190k.com" class="logo" aria-label="Home">H190K</a>
       <ul class="nav-links" role="navigation">
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="https://h190k.com">Home</a></li>
+        <li><a href="https://h190k.com/#contact">Contact</a></li>
       </ul>
       <div class="burger" role="button" tabindex="0" aria-label="Toggle Navigation">
-        <div class="line1"></div><div class="line2"></div><div class="line3"></div>
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
       </div>
     </div>
   </header>
 
-  <!-- All projects -->
-  <main>
-    <section id="projects" style="padding-top:140px;">
+  <!-- MAIN: All Projects Grid -->
+  <main style="padding-top:140px;">
+    <section id="projects">
       <div class="container">
         <h2>All Projects</h2>
         <div class="projects-grid" id="projects-grid"></div>
@@ -40,29 +96,46 @@
     </section>
   </main>
 
-  <!-- simple footer -->
-  <footer><div class="container"><p>&copy; 2025 H190K. All rights reserved.</p></div></footer>
+  <!-- FOOTER (same as index.html) -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 H190K. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://instagram.com/frh190k" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://x.com/h190k" target="_blank" aria-label="X (Twitter)">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="mailto:info@h190k.com" target="_blank" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
 
-  <!-- Same burger / scroll / animation JS (optional) -->
+  <!-- Reuse your main.js for burger & animations -->
   <script src="main.js"></script>
 
-  <!-- Render every project -->
+  <!-- MODULE: render all projects -->
   <script type="module">
     import projects from './projects.js';
 
     const grid = document.getElementById('projects-grid');
-    projects.forEach(p => grid.insertAdjacentHTML('beforeend', `
-      <div class="project-card">
-        <a href="${p.link}" target="_blank">
-          <img src="${p.img}" alt="${p.title}" loading="lazy">
-        </a>
-        <h3>${p.title}</h3>
-        <p>${p.desc}</p>
-        <button class="btn-secondary"
-                onclick="window.open('${p.link}', '_blank')">
-          ${p.button || 'View Project'}
-        </button>
-      </div>`));
+    projects.forEach(p => {
+      grid.insertAdjacentHTML('beforeend', `
+        <div class="project-card">
+          <a href="${p.link}" target="_blank">
+            <img src="${p.img}" alt="${p.title}" loading="lazy">
+          </a>
+          <h3>${p.title}</h3>
+          <p>${p.desc}</p>
+          <button class="btn-secondary"
+                  onclick="window.open('${p.link}','_blank')">
+            ${p.button || 'View Project'}
+          </button>
+        </div>`);
+    });
   </script>
 </body>
 </html>
