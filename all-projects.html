@@ -14,11 +14,17 @@
   <style>
     /* ───────────────  CSS Variables  ─────────────── */
     :root{
-      --primary-bg:#0a0a0a; --secondary-bg:#111;
-      --accent-color:#ff1493; --hover-accent:#ff6347;
-      --btn-primary-bg:#8a2be2; --btn-primary-hover:#4b0082;
-      --text-color:#fff; --text-muted:#ccc; --border-color:#333;
-      --transition-speed:.3s; --animation-duration:1s;
+      --primary-bg:#0a0a0a;
+      --secondary-bg:#111;
+      --accent-color:#ff1493;
+      --hover-accent:#ff6347;
+      --btn-primary-bg:#8a2be2;
+      --btn-primary-hover:#4b0082;
+      --text-color:#fff;
+      --text-muted:#ccc;
+      --border-color:#333;
+      --transition-speed:.3s;
+      --animation-duration:1s;
     }
 
     /* ───────────────  Base / Global  ─────────────── */
@@ -63,8 +69,11 @@
 
     /* ───────────────  Projects Grid & Cards  ─────────────── */
     #projects h2{
-      font-size:2.5rem;text-align:center;margin-bottom:50px;
-      opacity:0;animation:fadeInUp var(--animation-duration) forwards .5s
+      font-size:2.5rem;
+      text-align:center;
+      margin-bottom:50px;
+      opacity:0;
+      /* no animation here; triggered via JS */
     }
     .projects-grid{
       display:grid;
@@ -94,23 +103,32 @@
     }
     .project-card:hover img{filter:grayscale(0%)}
     .project-card h3,
-    .project-card p{margin:0 20px;text-align:center}
-    .project-card h3{
-      font-size:1.5rem;margin-top:15px;opacity:0;
-      animation:fadeInUp var(--animation-duration) forwards 1s
-    }
     .project-card p{
-      font-size:.9rem;margin-bottom:15px;color:var(--text-muted);
-      opacity:0;animation:fadeInUp var(--animation-duration) forwards 1.3s
+      margin:0 20px;
+      text-align:center;
+      opacity:0;
     }
     .btn-secondary{
-      display:block;width:80%;max-width:200px;margin-top:auto;margin-bottom:15px;
-      padding:10px 0;background:var(--accent-color);color:var(--text-color);
-      border:none;border-radius:25px;cursor:pointer;font-size:.9rem;text-align:center;
-      transition:background var(--transition-speed);opacity:0;
-      animation:fadeInUp var(--animation-duration) forwards 1.6s
+      display:block;
+      width:80%;max-width:200px;
+      margin-top:auto;margin-bottom:15px;
+      background:var(--accent-color);
+      color:var(--text-color);
+      border:none;border-radius:25px;
+      cursor:pointer;font-size:.9rem;
+      text-align:center;
+      opacity:0;
     }
-    .btn-secondary:hover{background:var(--hover-accent)}
+
+    /* ───────────────  Animations  ─────────────── */
+    @keyframes fadeInUp{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    /* toggle icon animation (nav) */
+    .toggle .line1{transform:rotate(-45deg) translate(-5px,6px)}
+    .toggle .line2{opacity:0}
+    .toggle .line3{transform:rotate(45deg) translate(-5px,-6px)}
 
     /* ───────────────  Footer  ─────────────── */
     footer{
@@ -122,7 +140,7 @@
     .social-links a{margin:0 15px;font-size:1.5rem;transition:color var(--transition-speed)}
     .social-links a:hover{color:var(--accent-color)}
 
-    /* ───────────────  Responsive & Animations  ─────────────── */
+    /* ───────────────  Responsive  ─────────────── */
     @media (max-width:768px){
       .nav-links{position:fixed;right:0;top:0;height:100vh;width:60%;background:rgba(0,0,0,.95);flex-direction:column;align-items:center;transform:translateX(100%);transition:transform .5s ease-in;padding-top:100px}
       .nav-links.nav-active{transform:translateX(0)}
@@ -130,27 +148,14 @@
       .burger{display:block}
       .social-links a{font-size:1.3rem;margin:0 10px}
     }
-    @media (min-width:992px) {
-      /* ensure header scroll effect works on larger screens too */
-    }
-    @keyframes fadeInUp{
-      from{opacity:0;transform:translateY(20px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-    /* ───────────────  Utility: fast-fade ─────────────── */
-    .fast-fade {
-      animation-duration:0.4s!important;
-      animation-delay:0s!important;
-      opacity:1!important;
-    }
   </style>
 </head>
 <body>
   <!-- HEADER -->
   <header id="navbar" role="banner">
     <div class="container nav-container">
-      <a href="#" class="logo" aria-label="Go to top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">H190K</a>
-      <ul class="nav-links" role="navigation">
+      <a href="#" class="logo" aria-label="Go to top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">H190K</a>
+      <ul class="nav-links">
         <li><a href="https://h190k.com">Home</a></li>
         <li><a href="https://h190k.com/#contact">Contact</a></li>
       </ul>
@@ -162,7 +167,7 @@
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <main style="padding-top:140px;">
     <section id="projects">
       <div class="container">
@@ -184,7 +189,7 @@
     </div>
   </footer>
 
-  <!-- Render projects -->
+  <!-- SCRIPTS -->
   <script type="module">
     import projects from './projects.js';
     const grid = document.getElementById('projects-grid');
@@ -199,13 +204,38 @@
       `);
     });
 
-    // apply fast-fade
-    function applyFastFade(sel) {
-      document.querySelectorAll(sel).forEach(el => el.classList.add('fast-fade'));
-    }
-    window.addEventListener('DOMContentLoaded', () => {
-      applyFastFade('#projects h2, .project-card h3, .project-card p, .btn-secondary');
-    });
+    // On-load animations setup
+    window.onload = function() {
+      // Burger toggle
+      const burger = document.querySelector('.burger');
+      const navLinks = document.querySelector('.nav-links');
+      const navItems = document.querySelectorAll('.nav-links li');
+      burger.addEventListener('click', () => {
+        navLinks.classList.toggle('nav-active');
+        navItems.forEach((li, i) => {
+          li.style.animation = li.style.animation ? '' : `navLinkFade 0.5s ease forwards ${i/7+0.3}s`;
+        });
+        burger.classList.toggle('toggle');
+      });
+
+      // Intersection Observer for fadeInUp on projects
+      const elems = document.querySelectorAll('#projects h2, .project-card h3, .project-card p, .btn-secondary');
+      elems.forEach(el => { el.style.opacity = 0; el.style.animation = 'none'; });
+      const obs = new IntersectionObserver((entries, o) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            let delay = 0;
+            if(entry.target.matches('#projects h2')) delay = 0.5;
+            if(entry.target.matches('.project-card h3')) delay = 1;
+            if(entry.target.matches('.project-card p')) delay = 1.3;
+            if(entry.target.matches('.btn-secondary')) delay = 1.6;
+            entry.target.style.animation = `fadeInUp var(--animation-duration) ease-out forwards ${delay}s`;
+            o.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      elems.forEach(el => obs.observe(el));
+    };
   </script>
 </body>
 </html>
