@@ -117,9 +117,20 @@ main section:nth-of-type(even){background:var(--secondary-bg)}
 }
 @media (min-width: 992px) {
   .projects-grid {
-    /* force exactly 4 columns on wide screens */
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+/* — New: View-All styling — */
+#view-all-wrapper {
+  text-align: center;
+  margin: 50px 0;
+}
+#view-all-wrapper .btn-secondary {
+  padding: 15px 60px;
+  font-size: 1rem;
+  width: auto;
+  max-width: none;
 }
 
 .project-card{
@@ -283,7 +294,7 @@ footer{background:var(--primary-bg);padding:20px 0;text-align:center;border-top:
     <div class="projects-grid" id="projects-grid"></div>
 
     <!-- “View all” button (injected by JS if there are more projects) -->
-    <div id="view-all-wrapper" style="text-align:center;margin-top:40px;"></div>
+    <div id="view-all-wrapper"></div>
   </div>
 </section>
 
