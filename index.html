@@ -267,8 +267,11 @@ footer{background:var(--primary-bg);padding:20px 0;text-align:center;border-top:
   <div class="container">
     <h2>My Projects</h2>
 
-    <!-- Empty grid; JS will inject cards -->
+    <!-- Cards for featured projects only -->
     <div class="projects-grid" id="projects-grid"></div>
+
+    <!-- “View all” button (injected by JS if there are more projects) -->
+    <div id="view-all-wrapper" style="text-align:center;margin-top:40px;"></div>
   </div>
 </section>
 
@@ -363,36 +366,31 @@ footer{background:var(--primary-bg);padding:20px 0;text-align:center;border-top:
   import projects from './projects.js';
   import config   from './config.js';
 
-  window.config = config;           // keep EmailJS config available
+  // expose config for the rest of your scripts
+  window.config = config;
 
-  /* ───── Featured projects to show on the home page ───── */
+  /* 1.  Pick the four featured projects to show on the home page  */
   const featuredTitles = [
     'AttendList – Streamlined Classroom Attendance',
     'QR Generator Browser Extension',
     'Chat Starter',
     'Alnssor Enterprise'
   ];
-
   const featured = projects.filter(p => featuredTitles.includes(p.title));
 
-  /* inject the four cards */
+  /* 2.  Render featured cards */
   const grid = document.getElementById('projects-grid');
   featured.forEach(p => grid.insertAdjacentHTML('beforeend', card(p)));
 
-  /* if there are hidden projects, show “View All Projects” */
+  /* 3.  Add “View all” button if there are hidden projects */
   if (projects.length > featured.length) {
-    grid.insertAdjacentHTML(
-      'afterend',
-      `<div style="text-align:center;margin-top:40px">
-         <a href="all-projects.html"
-            class="btn-secondary"
-            style="display:inline-block;width:auto;padding:12px 35px;">
-           View&nbsp;All&nbsp;Projects
-         </a>
-       </div>`
-    );
+    document.getElementById('view-all-wrapper').innerHTML =
+      '<a href="all-projects.html" class="btn-secondary" ' +
+      'style="display:inline-block;width:auto;padding:12px 35px;">' +
+      'View All Projects</a>';
   }
 
+  /* helper */
   function card(p) {
     return `
       <div class="project-card">
@@ -402,7 +400,7 @@ footer{background:var(--primary-bg);padding:20px 0;text-align:center;border-top:
         <h3>${p.title}</h3>
         <p>${p.desc}</p>
         <button class="btn-secondary"
-                onclick="window.open('${p.link}','_blank')">
+                onclick="window.open('${p.link}', '_blank')">
           ${p.button || 'View Project'}
         </button>
       </div>`;
