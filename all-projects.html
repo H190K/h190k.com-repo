@@ -138,6 +138,12 @@
     .toggle .line1{transform:rotate(-45deg) translate(-5px,6px)}
     .toggle .line2{opacity:0}
     .toggle .line3{transform:rotate(45deg) translate(-5px,-6px)}
+    /* ───────────────  Utility: fast-fade ─────────────── */
+.fast-fade {
+  animation-duration: 0.4s !important;
+  animation-delay:    0s   !important;
+  opacity:            1   !important;
+}
   </style>
 </head>
 <body>
@@ -208,5 +214,20 @@
         </div>`);
     });
   </script>
+  <script>
+  /**
+   * Apply the .fast-fade class to speed up and force opacity
+   * on all projects page elements.
+   */
+  function applyFastFade(selector) {
+    document.querySelectorAll(selector)
+      .forEach(el => el.classList.add('fast-fade'));
+  }
+
+  // Once DOM is ready, speed‐fade section header, cards, and buttons
+  window.addEventListener('DOMContentLoaded', () => {
+    applyFastFade('#projects h2, .project-card h3, .project-card p, .btn-secondary');
+  });
+</script>
 </body>
 </html>
