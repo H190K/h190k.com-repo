@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="All projects by H190K">
+  <title>All Projects | H190K</title>
+
+  <link rel="icon" href="icon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- reuse the same CSS: either copy-paste the <style> block from index.html
+       or move it into style.css and <link rel="stylesheet" href="style.css"> -->
+  <style>
+    /* paste your entire CSS from index.html here (identical) */
+  </style>
+</head>
+<body>
+  <!-- Header with quick links -->
+  <header id="navbar" role="banner">
+    <div class="container nav-container">
+      <a href="index.html#hero" class="logo" aria-label="Home">H190K</a>
+      <ul class="nav-links" role="navigation">
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="burger" role="button" tabindex="0" aria-label="Toggle Navigation">
+        <div class="line1"></div><div class="line2"></div><div class="line3"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- All projects -->
+  <main>
+    <section id="projects" style="padding-top:140px;">
+      <div class="container">
+        <h2>All Projects</h2>
+        <div class="projects-grid" id="projects-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- simple footer -->
+  <footer><div class="container"><p>&copy; 2025 H190K. All rights reserved.</p></div></footer>
+
+  <!-- Same burger / scroll / animation JS (optional) -->
+  <script src="main.js"></script>
+
+  <!-- Render every project -->
+  <script type="module">
+    import projects from './projects.js';
+
+    const grid = document.getElementById('projects-grid');
+    projects.forEach(p => grid.insertAdjacentHTML('beforeend', `
+      <div class="project-card">
+        <a href="${p.link}" target="_blank">
+          <img src="${p.img}" alt="${p.title}" loading="lazy">
+        </a>
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+        <button class="btn-secondary"
+                onclick="window.open('${p.link}', '_blank')">
+          ${p.button || 'View Project'}
+        </button>
+      </div>`));
+  </script>
+</body>
+</html>
