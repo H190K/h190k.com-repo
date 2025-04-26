@@ -82,7 +82,7 @@
     }
 
     .project-image {
-      background: #fff;
+      background: transparent;
       padding: 20px;
       display: flex;
       justify-content: center;
@@ -187,7 +187,9 @@
           <div class="project-content">
             <h3>${p.title}</h3>
             <p>${p.desc}</p>
-            <button class="btn-secondary" onclick="window.open('${p.link}','_blank')">${p.button || 'View Project'}</button>
+            <button class="btn-secondary" onclick="window.open('${p.link}','_blank')">
+              ${p.button || 'View Project'}
+            </button>
           </div>
         </div>
       `);
