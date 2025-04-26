@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="max-age=7200, must-revalidate" />
-<meta http-equiv="Pragma"        content="no-cache" />
-<meta http-equiv="Expires"       content="0" />
+  <meta http-equiv="Pragma"        content="no-cache" />
+  <meta http-equiv="Expires"       content="0" />
   <meta name="description" content="H190K - Web Developer Portfolio of Hasan Albehadili showcasing projects, skills, and contact information.">
   <title>H190K | Web Developer Portfolio</title>
   
@@ -20,8 +20,6 @@
   
   <!-- Lazy Load Library -->
   <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
-  
- 
   
 <style>
 /* ───────────────  CSS Variables  ─────────────── */
@@ -92,6 +90,22 @@ header.scrolled{
 }
 .btn-primary:hover{background:var(--btn-primary-hover);transform:scale(1.05)}
 
+/* Scroll-down arrow styles */
+.scroll-down {
+  margin-top: 60px;
+  text-align: center;
+}
+.arrow-down {
+  font-size: 2rem;
+  color: var(--hover-accent);
+  cursor: pointer;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(15px); }
+}
+
 /* ───────────────  Sections  ─────────────── */
 main section{padding:100px 0}
 main section:nth-of-type(even){background:var(--secondary-bg)}
@@ -112,7 +126,6 @@ main section:nth-of-type(even){background:var(--secondary-bg)}
 .projects-grid{
   display: grid;
   gap: 30px;
-  /* fluid single-column on small screens */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 @media (min-width: 992px) {
@@ -120,38 +133,30 @@ main section:nth-of-type(even){background:var(--secondary-bg)}
     grid-template-columns: repeat(4, 1fr);
   }
 }
-
-/* — New: View-All styling — */
 #view-all-wrapper {
   text-align: center;
   margin-top: 100px;   
   margin-bottom: 50px; 
 }
-
 #view-all-wrapper .btn-secondary {
   padding: 15px 60px;
   font-size: 1rem;
   width: auto;
   max-width: none;
 }
-
 .project-card{
   background:var(--primary-bg);border:2px solid var(--border-color);border-radius:10px;
   overflow:hidden;padding-bottom:25px;display:flex;flex-direction:column;
-  align-items:center;                        /* center everything */
-  transition:transform var(--transition-speed),border-color var(--transition-speed)
+  align-items:center;transition:transform var(--transition-speed),border-color var(--transition-speed)
 }
 .project-card:hover{transform:translateY(-10px);border-color:var(--hover-accent)}
-
 .project-card img{
   width:100%;aspect-ratio:16/9;height:auto;object-fit:cover;
   display:block;transition:filter var(--transition-speed)
 }
 .project-card:hover img{filter:grayscale(0%)}
-
 .project-card h3,
-.project-card p{margin:0 20px;text-align:center}   /* centered text */
-
+.project-card p{margin:0 20px;text-align:center}
 .project-card h3{
   font-size:1.5rem;margin-top:15px;opacity:0;
   animation:fadeInUp var(--animation-duration) forwards 1s
@@ -160,7 +165,6 @@ main section:nth-of-type(even){background:var(--secondary-bg)}
   font-size:.9rem;margin-bottom:15px;color:var(--text-muted);
   opacity:0;animation:fadeInUp var(--animation-duration) forwards 1.3s
 }
-
 .btn-secondary{
   display:block;width:80%;max-width:200px;margin-top:auto;margin-bottom:15px;
   padding:10px 0;background:var(--accent-color);color:var(--text-color);
@@ -196,7 +200,7 @@ main section:nth-of-type(even){background:var(--secondary-bg)}
 }
 .contact-form input:focus,.contact-form textarea:focus{border-color:var(--accent-color);outline:none}
 .contact-form button{
-  padding:15px;background:var(--btn-primary-hover);color:var(--text-color);
+  padding:15px;background:var(--btn-primary-hover);color:var(!--text-color);
   border:none;border-radius:25px;cursor:pointer;font-size:1rem;
   transition:background var(--transition-speed),transform var(--transition-speed);
   opacity:0;animation:fadeInUp var(--animation-duration) forwards 1.5s
@@ -222,7 +226,6 @@ footer{background:var(--primary-bg);padding:20px 0;text-align:center;border-top:
   .nav-links.nav-active{transform:translateX(0)}
   .nav-links li{margin:20px 0}
   .burger{display:block}
-
   .hero h1{font-size:2rem}.hero p{font-size:.9rem}
   .project-card h3{font-size:1.2rem}.project-card p{font-size:.8rem}
   .skill-icon{font-size:2.5rem}
@@ -239,17 +242,15 @@ footer{background:var(--primary-bg);padding:20px 0;text-align:center;border-top:
 .toggle .line2{opacity:0}
 .toggle .line3{transform:rotate(45deg) translate(-5px,-6px)}
 </style>
-
-
 </head>
 <body>
   <!-- Navigation -->
   <header id="navbar" role="banner">
     <div class="container nav-container">
-     <a href="#" class="logo" aria-label="Go to top"
-   onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">
-  H190K
-</a>
+      <a href="#" class="logo" aria-label="Go to top"
+         onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">
+        H190K
+      </a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
@@ -273,6 +274,12 @@ footer{background:var(--primary-bg);padding:20px 0;text-align:center;border-top:
         <h1>Hi, I'm H190K</h1>
         <p>Enthusiastic Web Developer dedicated to building visually striking and highly functional websites.</p>
         <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });">View My Work</button>
+        <!-- scroll-down arrow -->
+        <div class="scroll-down">
+          <i class="fas fa-chevron-down arrow-down"
+             onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });"
+             aria-label="Scroll down"></i>
+        </div>
       </div>
     </section>
     
@@ -286,50 +293,24 @@ footer{background:var(--primary-bg);padding:20px 0;text-align:center;border-top:
       </div>
     </section>
     
-  
-   <!-- Projects Section -->
-<section id="projects">
-  <div class="container">
-    <h2>My Projects</h2>
-
-    <!-- Cards for featured projects only -->
-    <div class="projects-grid" id="projects-grid"></div>
-
-    <!-- “View all” button (injected by JS if there are more projects) -->
-    <div id="view-all-wrapper"></div>
-  </div>
-</section>
-
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="container">
+        <h2>My Projects</h2>
+        <div class="projects-grid" id="projects-grid"></div>
+        <div id="view-all-wrapper"></div>
+      </div>
+    </section>
     
     <!-- Skills Section -->
     <section id="skills">
       <div class="container">
         <h2>My Skills</h2>
         <div class="skills-grid">
-          <!-- Skill 1: Frontend Development -->
-          <div class="skill-card">
-            <div class="skill-icon"><i class="fas fa-code"></i></div>
-            <h3>Frontend Development</h3>
-            <p>HTML, CSS, JavaScript</p>
-          </div>
-          <!-- Skill 2: Backend Development -->
-          <div class="skill-card">
-            <div class="skill-icon"><i class="fas fa-database"></i></div>
-            <h3>Backend Development</h3>
-            <p>MongoDB, MySQL, Supabase</p>
-          </div>
-          <!-- Skill 3: Design -->
-          <div class="skill-card">
-            <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
-            <h3>Design</h3>
-            <p>Adobe, Figma</p>
-          </div>
-          <!-- Skill 4: Cloud Services -->
-          <div class="skill-card">
-            <div class="skill-icon"><i class="fas fa-cloud"></i></div>
-            <h3>Cloud Services</h3>
-            <p>Heroku, Render, Netlify</p>
-          </div>
+          <div class="skill-card"><div class="skill-icon"><i class="fas fa-code"></i></div><h3>Frontend Development</h3><p>HTML, CSS, JavaScript</p></div>
+          <div class="skill-card"><div class="skill-icon"><i class="fas fa-database"></i></div><h3>Backend Development</h3><p>MongoDB, MySQL, Supabase</p></div>
+          <div class="skill-card"><div class="skill-icon"><i class="fas fa-paint-brush"></i></div><h3>Design</h3><p>Adobe, Figma</p></div>
+          <div class="skill-card"><div class="skill-icon"><i class="fas fa-cloud"></i></div><h3>Cloud Services</h3><p>Heroku, Render, Netlify</p></div>
         </div>
       </div>
     </section>
@@ -341,11 +322,8 @@ footer{background:var(--primary-bg);padding:20px 0;text-align:center;border-top:
         <div class="contact-form">
           <form id="contact-form">
             <input type="hidden" name="to_name" value="H190K">
-            <label for="from_name"></label>
             <input type="text" id="from_name" name="from_name" placeholder="Name/Surname" required>
-            <label for="from_email"></label>
             <input type="email" id="from_email" name="from_email" placeholder="Your-Email" required>
-            <label for="message"></label>
             <textarea id="message" name="message" rows="5" placeholder="Your-Message" required></textarea>
             <button type="submit">Send Message</button>
             <p id="form-message" style="display: none;"></p>
@@ -370,196 +348,148 @@ footer{background:var(--primary-bg);padding:20px 0;text-align:center;border-top:
     <div class="container">
       <p>&copy; 2025 H190K. All rights reserved.</p>
       <div class="social-links">
-        <a href="https://instagram.com/frh190k" target="_blank" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://x.com/h190k" target="_blank" aria-label="X (Twitter)">
-          <i class="fab fa-x-twitter"></i>
-        </a>
-        <a href="mailto:info@h190k.com" target="_blank" aria-label="Email">
-          <i class="fas fa-envelope"></i>
-        </a>
+        <a href="https://instagram.com/frh190k" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/h190k" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+        <a href="mailto:info@h190k.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
   </footer>
   
   <!-- EmailJS SDK -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   
-  <!-- Import Config -->
-<script type="module">
-  import projects from './projects.js';
-  import config   from './config.js';
+  <!-- Import Config & Projects -->
+  <script type="module">
+    import projects from './projects.js';
+    import config   from './config.js';
+    window.config = config;
+    const featuredTitles = [
+      'AttendList – Streamlined Classroom Attendance',
+      'QR Generator Browser Extension',
+      'Chat Starter',
+      'Alnssor Enterprise'
+    ];
+    const featured = projects.filter(p => featuredTitles.includes(p.title));
+    const grid = document.getElementById('projects-grid');
+    featured.forEach(p => grid.insertAdjacentHTML('beforeend', card(p)));
+    if (projects.length > featured.length) {
+      document.getElementById('view-all-wrapper').innerHTML =
+        '<a href="all-projects.html" class="btn-secondary" ' +
+        'style="display:inline-block;width:auto;padding:12px 35px;">' +
+        'View All Projects</a>';
+    }
+    function card(p) {
+      return `
+        <div class="project-card">
+          <a href="${p.link}" target="_blank">
+            <img src="${p.img}" alt="${p.title}" loading="lazy">
+          </a>
+          <h3>${p.title}</h3>
+          <p>${p.desc}</p>
+          <button class="btn-secondary"
+                  onclick="window.open('${p.link}', '_blank')">
+            ${p.button || 'View Project'}
+          </button>
+        </div>`;
+    }
+  </script>
 
-  // expose config for the rest of your scripts
-  window.config = config;
-
-  /* 1.  Pick the four featured projects to show on the home page  */
-  const featuredTitles = [
-    'AttendList – Streamlined Classroom Attendance',
-    'QR Generator Browser Extension',
-    'Chat Starter',
-    'Alnssor Enterprise'
-  ];
-  const featured = projects.filter(p => featuredTitles.includes(p.title));
-
-  /* 2.  Render featured cards */
-  const grid = document.getElementById('projects-grid');
-  featured.forEach(p => grid.insertAdjacentHTML('beforeend', card(p)));
-
-  /* 3.  Add “View all” button if there are hidden projects */
-  if (projects.length > featured.length) {
-    document.getElementById('view-all-wrapper').innerHTML =
-      '<a href="all-projects.html" class="btn-secondary" ' +
-      'style="display:inline-block;width:auto;padding:12px 35px;">' +
-      'View All Projects</a>';
-  }
-
-  /* helper */
-  function card(p) {
-    return `
-      <div class="project-card">
-        <a href="${p.link}" target="_blank">
-          <img src="${p.img}" alt="${p.title}" loading="lazy">
-        </a>
-        <h3>${p.title}</h3>
-        <p>${p.desc}</p>
-        <button class="btn-secondary"
-                onclick="window.open('${p.link}', '_blank')">
-          ${p.button || 'View Project'}
-        </button>
-      </div>`;
-  }
-</script>
-
-
-  <!-- JavaScript for Interactive Elements -->
+  <!-- Interactive JS -->
   <script>
     window.onload = function () {
-      // Initialize EmailJS after page load
-      if (window.config && window.config.emailjs) {
+      // EmailJS init
+      if (window.config?.emailjs) {
         emailjs.init(window.config.emailjs.publicKey);
-        console.log("✅ EmailJS Initialized");
-      } else {
-        console.error("❌ EmailJS config is missing!");
       }
-     
 
-      
-      // Burger Menu Toggle
+      // Burger toggle
       const burger = document.querySelector('.burger');
       const navLinks = document.querySelector('.nav-links');
-      const navLinkItems = document.querySelectorAll('.nav-links li');
-      
+      const items = document.querySelectorAll('.nav-links li');
       burger.addEventListener('click', () => {
         navLinks.classList.toggle('nav-active');
-        navLinkItems.forEach((link, index) => {
-          if (link.style.animation) {
-            link.style.animation = '';
-          } else {
-            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-          }
+        items.forEach((link, i) => {
+          link.style.animation = link.style.animation ? '' : `navLinkFade 0.5s ease forwards ${i/7+0.3}s`;
         });
         burger.classList.toggle('toggle');
       });
-      
-      // Allow burger menu toggle via keyboard (Enter key)
-      burger.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+      burger.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); burger.click(); } });
+
+      // Smooth scroll nav
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.addEventListener('click', e => {
           e.preventDefault();
-          burger.click();
-        }
-      });
-      
-      // Smooth Scrolling for Navigation Links
-      const navItems = document.querySelectorAll('.nav-links a');
-      navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          e.preventDefault();
-          const targetId = item.getAttribute('href').substring(1);
-          const targetSection = document.getElementById(targetId);
-          targetSection.scrollIntoView({ behavior: 'smooth' });
-          
-          if (navLinks.classList.contains('nav-active')) {
+          document.getElementById(a.getAttribute('href').slice(1))
+                  .scrollIntoView({behavior:'smooth'});
+          if(navLinks.classList.contains('nav-active')){
             navLinks.classList.remove('nav-active');
             burger.classList.remove('toggle');
-            navLinkItems.forEach(link => {
-              link.style.animation = '';
-            });
+            items.forEach(l=>l.style.animation='');
           }
         });
       });
-      
-      // Change Navbar Background on Scroll
+
+      // Navbar shadow on scroll
       window.addEventListener('scroll', () => {
-        const navbar = document.getElementById('navbar');
-        if (window.scrollY > 100) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
+        document.getElementById('navbar')
+                .classList.toggle('scrolled', window.scrollY>100);
       });
-      
-      // EmailJS Form Submission Handling
+
+      // Form submission
       const form = document.getElementById('contact-form');
-      const message = document.getElementById('form-message');
-      
-      if (form) {
-        form.addEventListener('submit', function (e) {
+      const msg  = document.getElementById('form-message');
+      if(form){
+        form.addEventListener('submit', function(e){
           e.preventDefault();
-          console.log("📨 Form submitted, preparing to send...");
           const { serviceID, templateID } = window.config.emailjs;
           emailjs.sendForm(serviceID, templateID, this)
             .then(() => {
-              console.log("✅ Email sent successfully!");
-              message.style.display = 'block';
-              message.style.color = '#4CAF50';
-              message.textContent = "Thank you! Your message has been sent.";
+              msg.style.display='block'; msg.style.color='#4CAF50';
+              msg.textContent="Thank you! Your message has been sent.";
               form.reset();
             })
-            .catch(err => {
-              console.error("❌ EmailJS error:", err);
-              message.style.display = 'block';
-              message.style.color = '#f44336';
-              message.textContent = "Oops! There was a problem submitting your form.";
+            .catch(() => {
+              msg.style.display='block'; msg.style.color='#f44336';
+              msg.textContent="Oops! There was a problem submitting your form.";
             });
         });
-      } else {
-        console.error("❌ Contact form not found!");
       }
-      
-      // Intersection Observer for On-Scroll Animations
-      const animatedElements = document.querySelectorAll(
-        ".hero h1, .hero p, .btn-primary, " +
-        "#about h2, #about p, " +
+
+      // On-scroll animations
+      const animateEls = document.querySelectorAll(
+        ".hero h1, .hero p, .btn-primary, #about h2, #about p, " +
         "#projects h2, .project-card h3, .project-card p, .btn-secondary, " +
-        "#skills h2, .skill-card h3, .skill-card p, " +
-        "#contact h2, .contact-form button, " +
-        "#donation h2"
+        "#skills h2, .skill-card h3, .skill-card p, #contact h2, .contact-form button, #donation h2"
       );
-      
-      animatedElements.forEach(elem => {
-        elem.style.opacity = 0;
-        elem.style.animation = "none";
+      animateEls.forEach(el=>{
+        el.style.opacity=0; el.style.animation='none';
       });
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.animation = "fadeInUp 1.2s ease-out forwards";
-            observer.unobserve(entry.target);
+      const obs = new IntersectionObserver(entries=>{
+        entries.forEach(ent=>{
+          if(ent.isIntersecting){
+            ent.target.style.animation="fadeInUp 1.2s ease-out forwards";
+            obs.unobserve(ent.target);
           }
         });
-      }, { threshold: 0.2 });
-      
-      animatedElements.forEach(elem => {
-        observer.observe(elem);
-      });
-      
-      // Initialize Lazy Load for Images
-      const lazyLoadInstance = new LazyLoad({
-        elements_selector: "img[loading='lazy']"
-      });
+      },{threshold:0.2});
+      animateEls.forEach(el=>obs.observe(el));
+
+      // Lazy load images
+      new LazyLoad({elements_selector:"img[loading='lazy']"});
+
+      // arrow bounce color toggle
+      const arrow = document.querySelector('.arrow-down');
+      if(arrow){
+        const styles = getComputedStyle(document.documentElement);
+        const orange = styles.getPropertyValue('--hover-accent').trim();
+        const purple = styles.getPropertyValue('--btn-primary-bg').trim();
+        let isOrange = false;
+        arrow.style.color = orange;
+        arrow.addEventListener('animationiteration', () => {
+          isOrange = !isOrange;
+          arrow.style.color = isOrange ? purple : orange;
+        });
+      }
     };
   </script>
 </body>
