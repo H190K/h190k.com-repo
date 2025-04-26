@@ -15,8 +15,8 @@
     :root {
       --primary-bg: #0a0a0a;
       --secondary-bg: #111;
-      --accent-color: #ff1493;
-      --hover-accent: #ff6347;
+      --accent-color: #ff1493;    /* pink/purple */
+      --hover-accent: #ff6347;    /* orange */
       --text-color: #fff;
       --text-muted: #ccc;
       --border-color: #333;
@@ -50,11 +50,38 @@
       justify-content: space-between;
       align-items: center;
     }
-    .logo { font-size: 1.8rem; font-weight: 700; cursor: pointer; }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-color);
+      transition: color var(--transition-speed);
+    }
+    .logo:hover { color: var(--hover-accent); }
+
     .nav-links { list-style: none; display: flex; }
     .nav-links li { margin-left: 30px; }
-    .nav-links a { font-size: 1rem; transition: color var(--transition-speed); }
-    .nav-links a:hover { color: var(--hover-accent); }
+    .nav-links a {
+      position: relative;
+      font-size: 1rem;
+      transition: color var(--transition-speed);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: var(--accent-color);
+      transition: width var(--transition-speed);
+    }
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
 
     /* Main Projects Section */
     main { padding-top: 100px; }
@@ -78,7 +105,7 @@
     }
     .project-card:hover {
       transform: translateY(-5px);
-      border-color: var(--hover-accent);
+      border-color: var(--accent-color);
     }
 
     .project-image {
@@ -133,7 +160,7 @@
       text-align: center;
       border-top: 1px solid var(--border-color);
     }
-    .social-links a { margin: 0 15px; font-size: 1.5rem; }
+    .social-links a { margin: 0 15px; font-size: 1.5rem; color: var(--text-color); transition: color var(--transition-speed); }
     .social-links a:hover { color: var(--hover-accent); }
 
     /* Responsive */
