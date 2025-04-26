@@ -108,18 +108,21 @@
       text-align:center;
       opacity:0;
     }
-    .btn-secondary{
-      display:block;
-      width:80%;max-width:200px;
-      margin-top:auto;margin-bottom:15px;
-      background:var(--accent-color);
-      color:var(--text-color);
-      border:none;border-radius:25px;
-      cursor:pointer;font-size:.9rem;
-      text-align:center;
-      opacity:0;
-    }
-
+   .btn-secondary {
+  display: inline-block;
+  width: auto;
+  margin: 0 auto 15px;
+  padding: 10px 35px;
+  background: var(--accent-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: .9rem;
+  text-align: center;
+  opacity: 0;           /* stays animated via JS */
+  animation: fadeInUp var(--animation-duration) ease-out forwards 1.6s; /* optional inline if you like */
+}
     /* ───────────────  Animations  ─────────────── */
     @keyframes fadeInUp{
       from{opacity:0;transform:translateY(20px)}
