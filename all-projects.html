@@ -49,7 +49,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative;
+      flex-wrap: wrap;
     }
     .logo {
       font-size: 1.8rem;
@@ -60,7 +60,7 @@
     }
     .logo:hover { color: var(--hover-accent); }
 
-    .nav-links { list-style: none; display: flex; }
+    .nav-links { list-style: none; display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px; }
     .nav-links li { margin-left: 30px; }
     .nav-links a {
       position: relative;
@@ -82,13 +82,6 @@
     }
     .nav-links a:hover::after {
       width: 100%;
-    }
-
-    .burger {
-      display: none;
-      font-size: 24px;
-      color: var(--text-color);
-      cursor: pointer;
     }
 
     /* Main Projects Section */
@@ -170,27 +163,6 @@
     }
     .social-links a { margin: 0 15px; font-size: 1.5rem; color: var(--text-color); transition: color var(--transition-speed); }
     .social-links a:hover { color: var(--hover-accent); }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background: rgba(10,10,10,0.95);
-        padding: 10px 20px;
-        flex-direction: column;
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-      }
-      .nav-links.show {
-        display: flex;
-      }
-      .burger {
-        display: block;
-      }
-    }
   </style>
 </head>
 <body>
@@ -198,11 +170,10 @@
   <header>
     <nav class="nav-container">
       <div class="logo" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">H190K</div>
-      <ul class="nav-links" id="navLinks">
+      <ul class="nav-links">
         <li><a href="https://h190k.com">Home</a></li>
         <li><a href="https://h190k.com/#contact">Contact</a></li>
       </ul>
-      <div class="burger" onclick="toggleMenu()">&#9776;</div>
     </nav>
   </header>
 
@@ -246,13 +217,6 @@
         </div>
       `);
     });
-  </script>
-
-  <!-- MENU TOGGLE SCRIPT -->
-  <script>
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("show");
-    }
   </script>
 </body>
 </html>
